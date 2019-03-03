@@ -1,0 +1,241 @@
+/*-------------------------------------------*\
+    General
+\*-------------------------------------------*/
+* {
+	box-sizing: border-box;
+	user-select: none;
+}
+
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 300;
+}
+
+
+
+/*-------------------------------------------*\
+    Header
+\*-------------------------------------------*/
+header {
+	background: blue;
+	color: white;
+	padding: 1rem;
+	font-size: 2.5rem;
+	display: flex;
+	align-items: center;
+	background: #00B4DB;
+	background: -webkit-linear-gradient(to left, #0083B0, #00B4DB);
+	background: linear-gradient(to left, #0083B0, #00B4DB);
+	
+}
+
+h1 {
+	font-size: 1em;
+	margin: 0 auto 0 0;
+}
+
+.game-details {
+	display: flex;
+}
+
+.turns-container {
+	margin-left: auto;
+	text-align: center;
+}
+
+.turns-title {
+	font-size: 1rem;
+}
+
+.score-container {
+	margin-left: 1em;
+	text-align: center;
+}
+
+.score-title {
+	font-size: 1rem;
+}
+
+@media(max-width: 767px) {
+	header {
+		font-size: 1.5rem;
+	}
+}
+
+
+
+/*-------------------------------------------*\
+    Board
+\*-------------------------------------------*/
+#board {
+	flex: 1;
+	padding: 1rem 0;
+	margin: 0 auto;
+	max-width: 1100px;
+	text-align: center;
+}
+
+
+
+/*-------------------------------------------*\
+    Card
+\*-------------------------------------------*/
+.card {
+	margin: 1rem;;
+	display: inline-block;
+	color: white;
+	width: 100px;
+	height: 100px;
+}
+@media(max-width: 767px) {
+	.card {
+		margin: 0.5rem;
+		width: 70px;
+		height: 70px;
+	}
+}
+
+.card-outer {
+	perspective: 1000px;
+	transition: transform 0.5s;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+
+.card-inner {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	transition: transform 0.5s;
+	transform-style: preserve-3d;
+}
+
+.card-inner:after {
+	content: '';
+    position: absolute;
+	top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    z-index: -1;
+    border-radius: 4%;
+	box-shadow: 0 0 0 0 rgba(51, 51, 51, 0.35), 0 0 0 0 rgba(51, 51, 51, 0.2);
+	transition: 0.3s all;
+}
+
+.card:not(.revealed) .card-inner:hover:after {
+    box-shadow: 0 10px 30px -10px rgba(51, 51, 51, 0.35), 0 30px 0px -40px rgba(51, 51, 51, 0.2);
+}
+
+.card-back, .card-face {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	border-radius: 3%;
+}
+
+.card-back {
+	background-color: #bbb;
+	color: black;
+	background: #ffb347;
+	background: -webkit-linear-gradient(to left, #ffcc33, #ffb347);
+	background: linear-gradient(to left, #ffcc33, #ffb347);
+	background-size: 150%;
+}
+
+.card-face {
+	background-color: #f4f4f4;
+	transform: rotateY(180deg);
+}
+
+.card-icon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 3rem;
+	line-height: 1;
+}
+
+.card.revealed {
+	transition: 0.5s all;
+	transform: none !important;
+}
+
+.card.revealed .js-tilt-glare {
+	display: none;
+}
+
+.card.revealed .card-outer {
+	cursor: default;
+}
+
+.card.revealed .card-inner {
+	transform: rotateY(180deg);
+}
+
+.card.matched .card-outer {
+	transform: scale(0);
+}
+
+
+
+/*-------------------------------------------*\
+    Footer
+\*-------------------------------------------*/
+footer {
+	width: 100%;
+	background: #ededed;
+	padding: 1rem;
+	text-align: center;
+	font-size: 0.8rem;
+	color:#313131
+}
+
+
+
+/*-------------------------------------------*\
+    Victory Screen
+\*-------------------------------------------*/
+#victory-screen {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+	text-align: center;
+	display: none;
+}
+
+.victory-emoji {
+	font-size: 7rem;
+}
+
+.victory-message {
+	font-size: 3rem;
+	font-weight: bold;
+	color: #14A4D2;
+}
+
+#victory-screen button {
+	background: #FDA438;
+	border: none;
+	color: white;
+	padding: 1em 2em;
+	border-radius: .15em;
+	margin-top: 20px;
+	transition: all .3s;
+	cursor: pointer;
+}
+
+#victory-screen button:hover {
+	background: #FDB82D;
+}

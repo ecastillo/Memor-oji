@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="inc/normalize.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,700" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<header>
+		<h1>Memor-oji</h1>
+		<div class="game-details">
+			<div class="turns-container">
+				<div class="turns-title">Turns</div>
+				<div id="turns"></div>
+			</div>
+			<div class="score-container">
+				<div class="score-title">Matches</div>
+				<div class="score"><span id="matches"></span>/<span id="pairs"></span></div>
+			</div>
+		</div>
+	</header>
+	
+	<div id="board"></div>
+	
+	<div id="victory-screen">
+		<div class="victory-emoji">&#x1F601;</div>
+		<div class="victory-message">Good job!</div>
+		<button onclick="javascript:location.reload();">Play again</button>
+	</div>
+	
+	<footer>Made with &#x1F489;, &#x1F4A6;, and &#x1F62D; by Eric Castillo.</footer>
+
+	<script src="inc/jquery-3.3.1.min.js"></script>
+	<script src="inc/tilt.jquery.min.js"></script>
+	<script src="js/app.js"></script>
+	
+	<script>
+		var game = new Game(12);
+		game.play();
+
+		$('.card').tilt({
+		    glare: true,
+		    maxGlare: .5,
+		    scale: 1.1,
+		});
+	</script>
+</body>
+</html>
